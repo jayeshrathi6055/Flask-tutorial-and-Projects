@@ -1,0 +1,5 @@
+Run development server in flask-------->
+$env:FLASK_APP = "<fileName>"    like app
+$env:FLASK_ENV = "development"   it will restart the server automatically after saving the file
+flask run
+

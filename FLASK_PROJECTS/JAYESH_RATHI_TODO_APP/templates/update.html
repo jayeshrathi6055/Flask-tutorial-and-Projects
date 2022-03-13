@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block body %}
+<form method="POST" action="/update/{{todo.sno}}" class="container mt-4">
+  <div class="mb-3">
+    <label for="todoTitle" class="form-label">Todo Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      placeholder="Enter name of your todo"
+      value="{{todo.title}}"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="todoDescription" class="form-label">Todo Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      rows="3"
+      name="desc"
+      placeholder="Describe about your todo"
+    >{{todo.description}}</textarea>
+  </div>
+  <button class="btn btn-outline-primary" type="submit">Update Todo</button>
+</form>
+{% endblock body %}

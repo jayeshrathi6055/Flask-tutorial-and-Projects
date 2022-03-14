@@ -28,6 +28,13 @@ class ToDo(db.Model):
 # Routing for home page
 @app.route('/', methods = ['GET','POST'])
 def save_todo():
+    args = request.args
+    if args:
+        query = args['search']
+        search_todo = ToDo.query.filter_by(title = query).first()
+        if search_todo:
+            return render_template("index.html",all_todo = [search_todo])
+        return render_template('index.html',all_todo = [])
     if request.method == "POST":
         todo = ToDo(title = request.form["title"],description = request.form["desc"])
         db.session.add(todo)
@@ -57,7 +64,6 @@ def update(sno):
         todo.description = request.form['desc']
         db.session.commit()
         return redirect('/')
-    print(todo.description)
     return render_template('update.html',todo = todo)
 
 if __name__ == "__main__":
